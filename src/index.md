@@ -10,8 +10,8 @@ hero:
     src: /background.png
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: 随想
+      link: /myIdea
     - theme: alt
       text: API Examples
       link: /api-examples
