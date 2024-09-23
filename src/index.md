@@ -12,9 +12,6 @@ hero:
     - theme: brand
       text: 随想
       link: /myIdea
-    - theme: alt
-      text: API Examples
-      link: /api-examples
 
 features:
   - title: Feature A
