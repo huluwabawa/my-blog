@@ -20,8 +20,13 @@ export default defineConfig({
             text:"web端",
             items:[
               {text:"UI库",link:"/FE/web/ui/index"},
-              {text:"代码片段",link:"/FE/web/codefragment/index"}
+              {text:"代码片段",link:"/FE/web/codefragment/index"},
+              {text:"VUE3",link:"/FE/web/vue3/vue3"}
             ]
+          },
+          {
+            text: "学习计划",
+            link: "/FE/web/plan"
           }
         ]
       },
