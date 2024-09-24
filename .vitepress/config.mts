@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-
+import { tasklist } from "@mdit/plugin-tasklist";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base:"/my-blog",
@@ -34,6 +34,7 @@ export default defineConfig({
         text: 'JAVA',
         items:[
           {text:"JAVA基础",link:"/JAVA/Base/index"},
+          {text:"JAVA学习计划",link:"/JAVA/plan"},
         ]
       },
       { text: 'PYTHON', link: '/PYTHON/index' },
@@ -113,5 +114,15 @@ export default defineConfig({
   },
   vite:{
     publicDir: "public"
+  },
+  markdown:{
+    image:{
+      lazyLoading:true
+    },
+    config:(md)=>{
+      md.use(tasklist,{
+        disabled:true
+      })
+    }
   }
 })
