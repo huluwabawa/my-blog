@@ -46,19 +46,21 @@
 > >v-model
 > >
 > >~~~vue
-> > 
+> >
 > >~~~
 > >
-> >:heavy_exclamation_mark:补充v-model基本原理
+> >::: tip :heavy_exclamation_mark:补充v-model基本原理
+> >
+> >
 > >
 > >~~~vue
-> >  <input type="text" :value="username" @input="username=$event?.target.value">
+> ><input type="text" :value="username" @input="username=$event?.target.value">
 > >// 通过:value绑定input输入框的值 @input 修改value的值
 > >
 > >/*
 > >自定义组件
 > >**/
-> >  <h-input :modelValue="username" @update:modelValue="username=$event"/>
+> ><h-input :modelValue="username" @update:modelValue="username=$event"/>
 > >~~~
 > >
 > >
