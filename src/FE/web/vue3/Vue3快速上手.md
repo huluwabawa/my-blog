@@ -1593,7 +1593,7 @@ console.log(router.replace)
 
 ## 5.1【准备一个效果】
  
-![]("./images/pinia_example.gif")
+![](./images/pinia_example.gif)
 ## 5.2【搭建 pinia 环境】
 
 第一步：`npm install pinia`
@@ -1617,7 +1617,7 @@ app.mount('#app')
 ```
 
 此时开发者工具中已经有了`pinia`选项
-![]("https://cdn.nlark.com/yuque/0/2023/png/35780599/1684309952481-c67f67f9-d1a3-4d69-8bd6-2b381e003f31.png")
+![默认](./images/pinia.png)
 ## 5.3【存储+读取数据】
 
 1. `Store`是一个保存：**状态**、**业务逻辑** 的实体，每个组件都可以**读取**、**写入**它。
