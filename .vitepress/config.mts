@@ -21,7 +21,8 @@ export default defineConfig({
             items:[
               {text:"UI库",link:"/FE/web/ui/index"},
               {text:"代码片段",link:"/FE/web/codefragment/index"},
-              {text:"VUE3",link:"/FE/web/vue3/vue3"}
+              {text:"VUE3",link:"/FE/web/vue3/vue3"},
+              {text:"VUE3快速上手",link:"/FE/web/vue3/Vue3快速上手"}
             ]
           },
           {
