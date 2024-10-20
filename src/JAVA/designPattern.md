@@ -107,7 +107,7 @@
 ~~~ text
 工厂模式（Factory Pattern）是 Java 中最常用的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。
 ~~~
-### 工厂模式的类型
+### 1.1工厂模式的类型
 > - 简单工厂模式（Simple Factory Pattern）
 > - 工厂方法模式（Factory Method Pattern）
 > - 抽象工厂模式（Abstract Factory Pattern）
@@ -118,7 +118,7 @@
 | 扩展性高，如果需要增加新产品，只需扩展一个工厂类即可。 |                                                              |
 | 屏蔽了产品的具体实现，调用者只关心产品的接口。         |                                                              |
 
-#### 实现(简单工厂模式)
+#### 1.2实现(简单工厂模式)
 
 ![工厂模式](http://8.137.17.19:9898/getImage?name=factory.jpg)
 
@@ -241,4 +241,230 @@ public class Square implements Shape{
   ~~~
 
   
+
+## 2. 抽象工厂模式（Abstract Factory Pattern）
+
+~~~text
+抽象工厂模式（Abstract Factory Pattern）是围绕一个超级工厂创建其他工厂。该超级工厂又称为其他工厂的工厂。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。
+
+
+在抽象工厂模式中，接口是负责创建一个相关对象的工厂，不需要显式指定它们的类。每个生成的工厂都能按照工厂模式提供对象。
+
+抽象工厂模式提供了一种创建一系列相关或相互依赖对象的接口，而无需指定具体实现类。通过使用抽象工厂模式，可以将客户端与具体产品的创建过程解耦，使得客户端可以通过工厂接口来创建一族产品。
+~~~
+
+| 优点                         | 缺点                                                         |
+| ---------------------------- | ------------------------------------------------------------ |
+| 确保统一产品族的对象一起工作 | 扩展产品族非常困难。增加一个新的产品族需要修改抽象工厂和所有具体工厂的代码。（增加产品族相对容易，增加一个新的产品的等级结构相对困难） |
+
+ ### 2.1结构
+
+* 抽象工厂（Abstract Factory）：声明了一组用于创建产品对象的方法，每个方法对应一种产品类型。抽象工厂可以是接口或抽象类。
+* 具体工厂（Concrete Factory）：实现了抽象工厂接口，负责创建具体产品对象的实例。
+* 抽象产品（Abstract Product）：定义了一组产品对象的共同接口或抽象类，描述了产品对象的公共方法。
+* 具体产品（Concrete Product）：实现了抽象产品接口，定义了具体产品的特定行为和属性。
+
+### 2.2实现
+
+![抽象工厂模式](http://8.137.17.19:9898/getImage?name=AbstractFactory.jpg)
+
+* 为形状创建一个接口 `Shape.java`
+
+  ~~~ java
+  public interface Shape {
+      void draw();
+  }
+  ~~~
+
+* 创建`Shape.java`的 实体类 `Rectangle.java` ；`Square.java`；`Circle.java`
+
+:::
+
+~~~ java
+/**
+ * 长方形实体类
+ */
+public class Rectangle implements Shape{
+    @Override
+    public void draw() {
+        System.out.println("制作长方形");
+    }
+}
+
+~~~
+
+~~~java
+/**
+ * 平方形实体类
+ */
+public class Square implements Shape{
+
+    @Override
+    public void draw() {
+        System.out.println("创建方形");
+    }
+}
+~~~
+
+~~~java
+/**
+ * 圆形实体类
+ */
+public class Circle implements Shape{
+    @Override
+    public void draw() {
+        System.out.println("创建圆形");
+    }
+}
+~~~
+
+:::
+
+* 为颜色创建一个接口 `Color.java`
+
+~~~java
+/**
+ * 颜色接口
+ */
+public interface Color {
+    void fill();
+}
+~~~
+
+创建`Color.java`的实体类 `Red.java` `Green.java` `Blue.java`
+
+::: code-group
+
+~~~java [Red.java]
+/**
+ * 红色实现类
+ */
+public class Red implements Color {
+ 
+   @Override
+   public void fill() {
+      System.out.println("Inside Red::fill() method.");
+   }
+}
+~~~
+
+~~~java [Green.java]
+/**
+ * 绿色实现类
+ */
+public class Green implements Color {
+ 
+   @Override
+   public void fill() {
+      System.out.println("Inside Green::fill() method.");
+   }
+}
+~~~
+
+~~~java [Blue.java]
+/**
+ * 蓝色实现类
+ */
+public class Blue implements Color {
+ 
+   @Override
+   public void fill() {
+      System.out.println("填充蓝色");
+   }
+}
+~~~
+
+::: 
+
+* 为 Color 和 Shape 对象创建抽象类来获取工厂。
+
+~~~JAVA
+
+/**
+ * 抽象工厂
+ */
+public abstract  class AbstractFactory {
+    public abstract Color getColor(String color);
+    public abstract Shape getShape(String shape);
+}
+~~~
+
+* 创建扩展了 AbstractFactory 的工厂类，基于给定的信息生成实体类的对象。`ShapeFactory.java` `ColorFactory.java`
+
+::: code-group
+~~~java [ShapeFactory.java]
+/**
+ * 形状工厂类
+ */
+public class ShapeFactory extends AbstractFactory {
+    
+   @Override
+   public Shape getShape(String shapeType){
+      if(shapeType == null){
+         return null;
+      }        
+      if(shapeType.equalsIgnoreCase("CIRCLE")){
+         return new Circle();
+      } else if(shapeType.equalsIgnoreCase("RECTANGLE")){
+         return new Rectangle();
+      } else if(shapeType.equalsIgnoreCase("SQUARE")){
+         return new Square();
+      }
+      return null;
+   }
+   
+   @Override
+   public Color getColor(String color) {
+      return null;
+   }
+}
+~~~
+
+~~~java [ColorFactory.java]
+/**
+ * 颜色工厂类
+ */
+public class ColorFactory extends AbstractFactory {
+    
+   @Override
+   public Shape getShape(String shapeType){
+      return null;
+   }
+   
+   @Override
+   public Color getColor(String color) {
+      if(color == null){
+         return null;
+      }        
+      if(color.equalsIgnoreCase("RED")){
+         return new Red();
+      } else if(color.equalsIgnoreCase("GREEN")){
+         return new Green();
+      } else if(color.equalsIgnoreCase("BLUE")){
+         return new Blue();
+      }
+      return null;
+   }
+}
+~~~
+
+::: 
+
+* 创建一个工厂创造器/生成器类，通过传递形状或颜色信息来获取工厂。
+
+~~~java
+/**
+ * 获取工厂
+ */
+public class FactoryProducer {
+   public static AbstractFactory getFactory(String choice){
+      if(choice.equalsIgnoreCase("SHAPE")){
+         return new ShapeFactory();
+      } else if(choice.equalsIgnoreCase("COLOR")){
+         return new ColorFactory();
+      }
+      return null;
+   }
+}
+~~~
 
