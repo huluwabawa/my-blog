@@ -468,3 +468,118 @@ public class FactoryProducer {
 }
 ~~~
 
+## 3 单例模式（Singleton Pattern）
+
+~~~text
+单例模式（Singleton Pattern）是 Java 中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。
+
+这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类的对象。
+
+单例模式是一种创建型设计模式，它确保一个类只有一个实例，并提供了一个全局访问点来访问该实例。
+~~~
+
+**注意：**
+
+- 1、单例类只能有一个实例。
+- 2、单例类必须自己创建自己的唯一实例。
+- 3、单例类必须给所有其他对象提供这一实例。
+
+| 优点                                                         | 缺点                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 内存中只有一个实例，减少内存开销，尤其是频繁创建和销毁实例时 | 没有接口，不能继承。                                         |
+| 避免资源的多重占用（如写文件操作）。                         | 与单一职责原则冲突，一个类应该只关心内部逻辑，而不关心实例化方式。 |
+
+### 3.1注意事项
+
+- **线程安全**：`getInstance()` 方法中需要使用同步锁 `synchronized (Singleton.class)` 防止多线程同时进入造成实例被多次创建。
+- **延迟初始化**：实例在第一次调用 `getInstance()` 方法时创建。
+- **序列化和反序列化**：重写 `readResolve` 方法以确保反序列化时不会创建新的实例。
+- **反射攻击**：在构造函数中添加防护代码，防止通过反射创建新实例。
+- **类加载器问题**：注意复杂类加载环境可能导致的多个实例问题。
+
+### 3.2实现
+
+![抽象工厂模式](http://8.137.17.19:9898/getImage?name=singleton.jpg)
+
+* 创建一个`Singleton.java`
+
+~~~java
+/**
+ * 基础单例模式
+ */
+public class SingleObject {
+ 
+   //创建 SingleObject 的一个对象
+   private static SingleObject instance = new SingleObject();
+ 
+   //让构造函数为 private，这样该类就不会被实例化
+   private SingleObject(){}
+ 
+   //获取唯一可用的对象
+   public static SingleObject getInstance(){
+      return instance;
+   }
+ 
+   public void showMessage(){
+      System.out.println("Hello World!");
+   }
+}
+~~~
+
+#### 3.2.1单例模式的集中实现方式
+
+##### (1) 懒汉式，线程不安全
+
+* 是否lazy初始化：是
+* 是否多线程安全： 否
+
+~~~java
+/**
+ * 懒汉式
+ * * lazy初始化：是
+ * * 多线程安全：否
+ */
+public class Singleton {  
+    private static Singleton instance;  
+    private Singleton (){}  
+  
+    public static Singleton getInstance() {  
+        if (instance == null) {  
+            instance = new Singleton();  
+        }  
+        return instance;  
+    }  
+}
+~~~
+
+##### (2)懒汉式，线程安全
+
+~~~text
+这种方式具备很好的 lazy loading，能够在多线程中很好的工作，但是，效率很低，99% 情况下不需要同步。
+~~~
+
+| 优点                             | 缺点                                                   |
+| -------------------------------- | ------------------------------------------------------ |
+| 第一次调用才初始化，避免内存浪费 | 必须加锁 synchronized 才能保证单例，但加锁会影响效率。 |
+
+
+
+~~~java
+/**
+ * 懒汉式。线程安全
+ * 是否 Lazy 初始化：是
+ *
+ * 是否多线程安全：是
+ */
+public class SingletonSafe {
+    private static SingletonSafe instance;
+    private SingletonSafe (){}
+    public static synchronized SingletonSafe getInstance() {
+        if (instance == null) {
+            instance = new SingletonSafe();
+        }
+        return instance;
+    }
+}
+~~~
+
