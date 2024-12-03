@@ -73,7 +73,7 @@
 
 ## 设计模式之间的关系 :hand:
 
-![设计模式之间的关系](http://8.137.17.19:9898/getImage?name=java-24-design-pattern.png)
+![设计模式之间的关系](https://bawa.vip/getImage?name=java-24-design-pattern.png)
 
 ### 设计模式的六大原则
 
@@ -119,7 +119,7 @@
 
 #### 1.2实现(简单工厂模式)
 
-![工厂模式](http://8.137.17.19:9898/getImage?name=factory.jpg)
+![工厂模式](https://bawa.vip/getImage?name=factory.jpg)
 
 * 创建一个接口定义方法`Shape.java`
 
@@ -265,7 +265,7 @@ public class Square implements Shape{
 
 ### 2.2实现
 
-![抽象工厂模式](http://8.137.17.19:9898/getImage?name=AbstractFactory.jpg)
+![抽象工厂模式](https://bawa.vip/getImage?name=AbstractFactory.jpg)
 
 * 为形状创建一个接口 `Shape.java`
 
@@ -498,7 +498,7 @@ public class FactoryProducer {
 
 ### 3.2实现
 
-![抽象工厂模式](http://8.137.17.19:9898/getImage?name=singleton.jpg)
+![抽象工厂模式](https://bawa.vip/getImage?name=singleton.jpg)
 
 * 创建一个`Singleton.java`
 
@@ -581,7 +581,6 @@ public class SingletonSafe {
     }
 }
 ~~~
-
 ##### (3) 饿汉式 
 
 ~~~text
@@ -636,4 +635,4 @@ getInstance()想的对应用程序很关键
 > - **具体建造者（Concrete Builder）**：实现抽象建造者接口，具体确定如何构建产品的各个部分，并负责返回最终构建的产品。
 > - **指导者（Director）**：负责调用建造者的方法来构建产品，指导者并不了解具体的构建过程，只关心产品的构建顺序和方式
 
-![建造者模式](http://8.137.17.19:9898/getImage?name=builder.svg)
+![建造者模式](https://bawa.vip/getImage?name=builder.svg)
