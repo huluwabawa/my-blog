@@ -36,7 +36,8 @@ export default defineConfig({
         items:[
           {text:"JAVA基础",link:"/JAVA/Base/index"},
           {text:"JAVA学习计划",link:"/JAVA/plan"},
-          {text:"碎片",link: "/JAVA/codeFragment"}
+          {text:"碎片",link: "/JAVA/codeFragment"},
+          {text:"好用的库",link: "/JAVA/repository"}
         ]
       },
       { text: 'PYTHON', link: '/PYTHON/index' },
