@@ -13,7 +13,7 @@
 - [ ] 学习封装vue组件库
 - [ ] 学习vue中的拖拽组件，做一个简单的动态表单系统（配合后端）
 - [ ] 了解一下WebRTC，做一个简单的视频会议系统
-
+- [ ] 学习文章 https://www.yuque.com/sxd_panda/antv/dnd
   :::
 
 :::info 完成
